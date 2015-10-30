@@ -54,6 +54,7 @@ get = (path, handler) ->
   redis.get 'hubot:storage', (err, reply) ->
     token = JSON.parse(reply)["_private"]["astroscrum-auth-token"]
     options = { url: url + path, headers: "X-Auth-Token": token }
+    console.log('>>>>>>> get options', options)
     Request.get options, (err, res, body) ->
       handler JSON.parse(body)
 
