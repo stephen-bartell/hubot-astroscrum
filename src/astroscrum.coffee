@@ -41,9 +41,11 @@ Handlebars = require('handlebars')
 Request = require('request')
 
 # Setup Redis
-if process.env.REDIS_URL
-  redis_url = require('url').parse(process.env.REDIS_URL)
+if process.env.REDISCLOUD_URL
+  redis_url = require('url').parse(process.env.REDISCLOUD_URL)
+  console.log('>>>>>>> redis_url', process.env.REDISCLOUD_URL)
   redis = require('redis').createClient(redis_url.port, redis_url.hostname)
+  console.log('>>>>>>> redis_url parsed', process.env.REDISCLOUD_URL)
   redis.auth redis_url.auth.split(':')[1]
 else
   redis = require('redis').createClient()
