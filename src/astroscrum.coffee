@@ -61,7 +61,9 @@ post = (path, data, handler) ->
   redis.get 'hubot:storage', (err, reply) ->
     token = JSON.parse(reply)["_private"]["astroscrum-auth-token"]
     options = { url: url + path, json: data, headers: "X-Auth-Token": token }
+    console.log('>>>>>>> post options', options)
     Request.post options, (err, res, body) ->
+      console.log('>>>>>>> post response status code', res.statusCode)
       handler JSON.stringify(body)
 
 put = (path, data, handler) ->
