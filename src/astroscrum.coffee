@@ -240,6 +240,7 @@ module.exports = (robot) ->
         body: msg.match[2]
 
     post '/entries', data, (response) ->
+      console.log('>>>>>>> /entries response', response)
       response = JSON.parse(response)
       robot.send { room: msg.envelope.user.name }, templates.entry(response)
 
